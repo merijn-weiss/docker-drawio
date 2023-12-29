@@ -2,8 +2,8 @@
 version: '3.5'
 services:
   drawio:
-    image: jgraph/drawio
-    container_name: drawio
+    image: mondrian/diagrams
+    container_name: mondrian-diagrams
     restart: unless-stopped
     ports:
       - 80:8080
