@@ -6,19 +6,18 @@ services:
     container_name: drawio
     restart: unless-stopped
     ports:
-      - 8080:8080
-      - 8443:8443
+      - 80:8080
+      - 443:8443
     environment:
-      PUBLIC_DNS: domain
-      ORGANISATION_UNIT: unit
-      ORGANISATION: org
-      CITY: city
-      STATE: state
-      COUNTRY_CODE: country
+      PUBLIC_DNS: dev.mondrian-it.io
+      DRAWIO_SERVER_URL: https://dev.mondrian-it.io/
+      DRAWIO_VIEWER_URL: https://dev.mondrian-it.io/js/viewer.min.js
+      DRAWIO_LIGHTBOX_URL: https://dev.mondrian-it.io/
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://domain:8080 || exit 1"]
       interval: 1m30s
       timeout: 10s
       retries: 5
       start_period: 10s
-
+    volumes:
+      - ./.keystore:/usr/local/tomcat/.keystore
