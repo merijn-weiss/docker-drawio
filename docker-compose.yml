@@ -14,6 +14,7 @@ services:
       DRAWIO_SERVER_URL: https://dev.mondrian-it.io/
       DRAWIO_VIEWER_URL: https://dev.mondrian-it.io/js/viewer.min.js
       DRAWIO_LIGHTBOX_URL: https://dev.mondrian-it.io/
+      DRAWIO_CSP_HEADER: https://dev.mondrian-it.io
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://domain:8080 || exit 1"]
       interval: 1m30s
