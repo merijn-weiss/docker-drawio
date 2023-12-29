@@ -2,7 +2,7 @@
 version: '3.5'
 services:
   drawio:
-    build: .
+    pull_policy: missing
     image: mondrian/diagrams
     container_name: mondrian-diagrams
     restart: unless-stopped
