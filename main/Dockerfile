@@ -9,8 +9,7 @@ RUN apt-get update -y && \
         git
 
 RUN cd /tmp && \
-    git clone --depth 1 https://github.com/merijn-weiss/drawio.git && \
-    git checkout dev_mondrian && \
+    git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
     cd /tmp/drawio/etc/build/ && \
     ant war
 
