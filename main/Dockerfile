@@ -20,8 +20,9 @@ RUN \
     else \
         mkdir -p /tmp/drawio/etc/build/ && \
         cd /tmp/drawio/etc/build/ && \
+        echo "TEST" && \
         URL='https://github.com/merijn-weiss/drawio/releases/download/' ${APP_VERSION} '/draw.war' && \
-        echo $ULR && \
+        echo $URL && \
         wget $URL ; \
     fi
 
