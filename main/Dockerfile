@@ -18,9 +18,9 @@ RUN \
         cd /tmp/drawio/etc/build/ && \
         ant war \
     else \
-        mkdir -p /tmp/drawio/etc/build/ && \
-        cd /tmp/drawio/etc/build/ && \
         echo "TEST" && \
+        mkdir -p /tmp/drawio/etc/build && \
+        cd /tmp/drawio/etc/build/ && \
         URL='https://github.com/merijn-weiss/drawio/releases/download/' ${APP_VERSION} '/draw.war' && \
         echo $URL && \
         wget $URL ; \
