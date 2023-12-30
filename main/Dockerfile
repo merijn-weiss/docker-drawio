@@ -13,9 +13,6 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
-    URL=https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war && \
-    echo $URL && \
-    wget $URL && \
     if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
@@ -25,7 +22,7 @@ RUN \
         echo "TEST" && \
         mkdir -p /tmp/drawio/etc/build && \
         cd /tmp/drawio/etc/build/ && \
-        wget $URL ; \
+        wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi
 
 FROM tomcat:9-jre11
