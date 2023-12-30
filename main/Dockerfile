@@ -1,3 +1,6 @@
+ARG APP_BUILD
+ARG APP_VERSION
+
 FROM openjdk:11-jdk-slim AS build
 
 RUN apt-get update -y && \
@@ -9,8 +12,8 @@ RUN apt-get update -y && \
         git
 
 RUN \
-    echo ${APP_VERSION} && \
-    if [ $APP_BUILD = "yes" ] ; then \
+    echo "APP_BUILD: ${APP_BUILD} APP_VERSION: ${APP_VERSION} "&& \
+    if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
         cd /tmp/drawio/etc/build/ && \
