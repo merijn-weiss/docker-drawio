@@ -26,7 +26,7 @@ RUN \
     fi
 
 RUN \
-    cd /tmp/drawio/etc/build/ && \
+    cd /tmp/ && \
     ls -latr
 
 FROM tomcat:9-jre11
