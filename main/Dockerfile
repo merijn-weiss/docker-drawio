@@ -20,8 +20,9 @@ RUN \
     else \
         mkdir -p /tmp/drawio/etc/build/ && \
         cd /tmp/drawio/etc/build/ && \
-        echo 'https://github.com/merijn-weiss/drawio/releases/download/'${APP_VERSION}'/draw.war' && \
-        wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
+        URL='https://github.com/merijn-weiss/drawio/releases/download/' ${APP_VERSION} '/draw.war' && \
+        echo $ULR && \
+        wget $URL ; \
     fi
 
 FROM tomcat:9-jre11
