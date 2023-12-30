@@ -44,7 +44,15 @@ echo "window.DRAWIO_VIEWER_URL = '${DRAWIO_VIEWER_URL}';" >> $CATALINA_HOME/weba
 echo "window.DRAWIO_LIGHTBOX_URL = '${DRAWIO_LIGHTBOX_URL}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "window.DRAW_MATH_URL = 'math/es5';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 #Custom draw.io configurations. For more details, https://www.drawio.com/doc/faq/configure-diagram-editor
-echo "window.DRAWIO_CONFIG = ${DRAWIO_CONFIG:-null};" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+## Mondrian: echo "window.DRAWIO_CONFIG = ${DRAWIO_CONFIG:-null};" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+if [[ -z "${MONDRIAN_CONFIGURATION}" ]]; then
+    echo "let xhr = new XMLHttpRequest();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "xhr.open('GET', window.DRAWIO_SERVER_URL + '${MONDRIAN_CONFIGURATION}', false);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "xhr.send();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "let mondrianConfig = JSON.parse(xhr.responseText);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "window.DRAWIO_CONFIG = mondrianConfig.appConfiguration;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+fi
+
 #Real-time configuration
 echo "urlParams['sync'] = 'manual'; //Disable Real-Time" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
