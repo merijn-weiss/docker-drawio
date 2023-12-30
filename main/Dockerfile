@@ -20,7 +20,7 @@ RUN \
     else \
         mkdir -p /tmp/drawio/etc/build/ && \
         cd /tmp/drawio/etc/build/ && \
-        echo "APP_BUILD: ${APP_BUILD} APP_VERSION: ${APP_VERSION}" && \
+        echo "wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war" && \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi
 
