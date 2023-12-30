@@ -12,7 +12,7 @@ RUN apt-get update -y && \
         git
 
 RUN \
-    echo "APP_BUILD: ${APP_BUILD} APP_VERSION: ${APP_VERSION} "&& \
+    echo "APP_BUILD: ${APP_BUILD} APP_VERSION: ${APP_VERSION}" && \
     if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
