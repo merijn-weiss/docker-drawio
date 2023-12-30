@@ -6,7 +6,8 @@ RUN apt-get update -y && \
     mkdir -p /usr/share/man/man1 && \
     apt-get install -y \
         ant \
-        git
+        git \
+        wget
 
 ARG APP_BUILD=yes
 ARG APP_VERSION
@@ -14,7 +15,7 @@ ARG APP_VERSION
 RUN \
     URL=https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war && \
     echo $URL && \
-    curl -LJO $URL && \
+    wget $URL && \
     if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
