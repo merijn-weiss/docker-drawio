@@ -1,19 +1,18 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches:
-      - master
-    tags:
-      - 'v*'
-    schedule:
-      - cron: "05 04 * * 1"
+#  push:
+#    branches:
+#      - master
+#    tags:
+#      - 'v*'
+ workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPO: jgraph/drawio
+      REPO: merijn-weiss/drawio
       HTTP_PORT: 32733
       HTTPS_PORT: 32734
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
