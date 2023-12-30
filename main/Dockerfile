@@ -25,7 +25,7 @@ RUN \
         cd /drawio/build/ && \
         ls -latr && \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
-    fi \
+    fi ;\
     ls -latr
 
 FROM tomcat:9-jre11
