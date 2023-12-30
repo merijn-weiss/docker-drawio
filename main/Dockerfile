@@ -12,7 +12,8 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
-    echo "TEST ${APP_BUILD}" && \
+    URL='https://github.com/merijn-weiss/drawio/releases/download/' ${APP_VERSION} '/draw.war' && \
+    echo $URL && \
     if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
@@ -22,8 +23,6 @@ RUN \
         echo "TEST" && \
         mkdir -p /tmp/drawio/etc/build && \
         cd /tmp/drawio/etc/build/ && \
-        URL='https://github.com/merijn-weiss/drawio/releases/download/' ${APP_VERSION} '/draw.war' && \
-        echo $URL && \
         wget $URL ; \
     fi
 
