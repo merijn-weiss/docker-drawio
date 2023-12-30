@@ -1,6 +1,3 @@
-ARG APP_BUILD=HELLO
-ARG APP_VERSION=12345
-
 FROM openjdk:11-jdk-slim AS build
 
 RUN apt-get update -y && \
@@ -10,6 +7,9 @@ RUN apt-get update -y && \
     apt-get install -y \
         ant \
         git
+
+ARG APP_BUILD=yes
+ARG APP_VERSION
 
 RUN \
     echo "APP_BUILD: ${APP_BUILD} APP_VERSION: ${APP_VERSION}" && \
