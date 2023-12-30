@@ -12,7 +12,6 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
-    echo "APP_BUILD: ${APP_BUILD} APP_VERSION: ${APP_VERSION}" && \
     if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
@@ -21,6 +20,7 @@ RUN \
     else \
         mkdir -p /tmp/drawio/etc/build/ && \
         cd /tmp/drawio/etc/build/ && \
+        echo "APP_BUILD: ${APP_BUILD} APP_VERSION: ${APP_VERSION}" && \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi
 
