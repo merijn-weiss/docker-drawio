@@ -12,7 +12,7 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
-    URL='https://github.com/merijn-weiss/drawio/releases/download/' ${APP_VERSION} '/draw.war' && \
+    URL=https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war && \
     echo $URL && \
     if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
