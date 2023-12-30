@@ -20,13 +20,13 @@ RUN \
         ant war \
     else \
         echo "TEST" && \
-        mkdir -p /tmp/drawio/etc/build && \
-        cd /tmp/drawio/etc/build/ && \
+        mkdir -p /tmp/drawio/build/ && \
+        cd /tmp/drawio/build/ && \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi
 
 RUN \
-    cd /tmp/ && \
+    cd /tmp/drawio/build/ && \
     ls -latr
 
 FROM tomcat:9-jre11
