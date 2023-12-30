@@ -20,8 +20,10 @@ RUN \
         ant war \
     else \
         cd /tmp && \
+        ls -latr && \
         mkdir -p /drawio/build && \
         cd /drawio/build/ && \
+        ls -latr && \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi
 
