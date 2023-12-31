@@ -196,16 +196,16 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
     do
         xmlstarlet ed \
             -P -S -L \
-            -i "/Server/Service/Connector/SSLHostConfig" -t 'attr' -n 'hostName' -v "${SSL_HOST}" \
-            -i "/Server/Service/Connector/SSLHostConfig" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
-            -s "/Server/Service/Connector/SSLHostConfig" -t 'elem' -n 'Certificate' \
-            -i "/Server/Service/Connector/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystoreFile' -v "$CATALINA_HOME/.keystore" \
-            -i "/Server/Service/Connector/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystorePassword' -v "${KEY_PASS}" \
+            -i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'hostName' -v "${SSL_HOST}" \
+            -i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
+            -s "/Server/Service/${UUID}/SSLHostConfig" -t 'elem' -n 'Certificate' \
+            -i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystoreFile' -v "$CATALINA_HOME/.keystore" \
+            -i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystorePassword' -v "${KEY_PASS}" \
+            -r "/Server/Service/${UUID}" -v 'Connector' \
         conf/server.xml
     done
 fi
 
-xmlstarlet ed \
-conf/server.xml
+xmlstarlet ed conf/server.xml
 
 exec "$@"
