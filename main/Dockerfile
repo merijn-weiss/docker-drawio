@@ -20,6 +20,13 @@ RUN \
 
 RUN \
     if [ ${APP_BUILD} = "yes" ] ; then \
+        echo "yes" \
+    else \
+        echo "no" \
+    fi
+
+RUN \
+    if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
         cd /tmp/drawio/etc/build/ && \
