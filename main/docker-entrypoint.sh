@@ -45,9 +45,9 @@ echo "window.DRAWIO_LIGHTBOX_URL = '${DRAWIO_LIGHTBOX_URL}';" >> $CATALINA_HOME/
 echo "window.DRAW_MATH_URL = 'math/es5';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 #Custom draw.io configurations. For more details, https://www.drawio.com/doc/faq/configure-diagram-editor
 ## Mondrian: echo "window.DRAWIO_CONFIG = ${DRAWIO_CONFIG:-null};" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-if [[   "${MONDRIAN_CONFIGURATION}" ]]; then
+if [[   "${MONDRIAN_CONFIGURATION_PATH}" ]]; then
     echo "let xhr = new XMLHttpRequest();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-    echo "xhr.open('GET', window.DRAWIO_SERVER_URL + '${MONDRIAN_CONFIGURATION}', false);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "xhr.open('GET', window.DRAWIO_SERVER_URL + '${MONDRIAN_CONFIGURATION_PATH} + window.location.host + '${MONDRIAN_CONFIGURATION_FILE}', false);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "xhr.send();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "let mondrianConfig = JSON.parse(xhr.responseText);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "window.DRAWIO_CONFIG = mondrianConfig.appConfiguration;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
