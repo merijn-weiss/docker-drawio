@@ -161,7 +161,7 @@ UUID="$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 1 | head -n 1)$(cat /dev/ur
 VAR=$(cat conf/server.xml | grep "$CATALINA_HOME/.keystore")
 
 if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
-     echo "Append https connector to server.xml"
+    echo "Append https connector to server.xml"
 
     xmlstarlet ed \
         -P -S -L \
@@ -187,5 +187,21 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
     conf/server.xml
 fi
 
+if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
+    echo "Append additional SSLHostConfig to server.xml"
+
+    for SSL_HOST in "${SSL_HOSTS[@]}"
+    do
+        xmlstarlet ed \
+            -P -S -L \
+            -s "/Server/Service/Connector" -t 'elem' -n 'SSLHostConfig' \
+            -i "/Server/Service/Connector/SSLHostConfig" -t 'attr' -n 'hostName' -v "${SSL_HOST}" \
+            -i "/Server/Service/Connector/SSLHostConfig" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
+            -s "/Server/Service/Connector/SSLHostConfig" -t 'elem' -n 'Certificate' \
+            -i "/Server/Service/Connector/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystoreFile' -v "$CATALINA_HOME/.keystore" \
+            -i "/Server/Service/Connector/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystorePassword' -v "${KEY_PASS}" \
+        conf/server.xml
+    done
+fi
 
 exec "$@"
