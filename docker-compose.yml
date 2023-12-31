@@ -15,7 +15,7 @@ services:
       - 443:8443
     environment:
       PUBLIC_DNS: dev.mondrian-it.io
-      SSL_HOSTS: "diagrams-dev.mondrian-it.io"
+      SSL_HOSTS: "dev.mondrian-it.io,diagrams-dev.mondrian-it.io"
       #DRAWIO_CSP_HEADER: default-src \'self\'; script-src \'self\' https://storage.googleapis.com https://apis.google.com https://docs.google.com https://code.jquery.com \'unsafe-inline\'; connect-src \'self\' https://*.mondrian-it.io https://*.dropboxapi.com https://api.trello.com https://api.github.com https://raw.githubusercontent.com https://*.googleapis.com https://*.googleusercontent.com https://graph.microsoft.com https://*.1drv.com https://*.sharepoint.com https://gitlab.com https://*.google.com https://fonts.gstatic.com https://fonts.googleapis.com; img-src * data:; media-src * data:; font-src * about:; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; frame-src \'self\' https://*.google.com;
       MONDRIAN_ROOT: mondrian/
       MONDRIAN_CONFIGURATION_PATH: diagrams_config/
