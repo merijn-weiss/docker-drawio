@@ -13,6 +13,7 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
+    ls -latr && \
     pwd && \
     mkdir -p /tmp/drawio/build && \
     cd /tmp/drawio/build/ && \
@@ -23,6 +24,7 @@ RUN \
         cd /tmp/drawio/etc/build/ && \
         ant war \
     else \
+        echo "MERIJN" && \
         cd /tmp && \
         ls -latr && \
         cd /drawio/build/ && \
