@@ -17,6 +17,7 @@ RUN \
     ls -latr && \
     mkdir -p /tmp/drawio/build && \
     cd /tmp/drawio/build/ && \
+    pwd && \
     ls -latr
 
 RUN \
