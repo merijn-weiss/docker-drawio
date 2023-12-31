@@ -30,7 +30,7 @@ RUN \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi ;
 
-RUN --from=build \
+RUN \
     pwd && \
     ls -latr
 
