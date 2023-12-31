@@ -2,7 +2,7 @@
 version: '3.5'
 services:
   drawio:
-    image: mondrian/diagrams
+    image: mondrian/diagrams:v22.1.15+mondrian_2.5.0
     build: 
       context: ./main
       args:
