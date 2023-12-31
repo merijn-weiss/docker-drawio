@@ -62,11 +62,15 @@ fi
 
 #Real-time configuration
 echo "urlParams['sync'] = 'manual'; //Disable Real-Time" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "urlParams['extAuth'] = '1'; //Disable notifications" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
 #Disable unsupported services
 echo "urlParams['db'] = '0'; //dropbox" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "urlParams['gh'] = '0'; //github" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "urlParams['tr'] = '0'; //trello" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+
+#Enable supported services
+echo "urlParams['browser'] = '1'; //browser" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
 #Google Drive 
 if [[ -z "${DRAWIO_GOOGLE_CLIENT_ID}" ]]; then
@@ -137,8 +141,6 @@ fi
 
 #Treat this domain as a draw.io domain
 echo "App.prototype.isDriveDomain = function() { return true; }" >> $CATALINA_HOME/webapps/draw/js/PostConfig.js
-
-cat $CATALINA_HOME/webapps/draw/js/PostConfig.js
 
 # Update SSL port configuration if it does'nt exists
 #
