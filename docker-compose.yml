@@ -29,5 +29,5 @@ services:
       start_period: 10s
     volumes:
       - ./.keystore:/usr/local/tomcat/.keystore
-      - /etc/letsencrypt/live:/usr/local/tomcat/certificates
+      - ../mondrianCertificates:/usr/local/tomcat/certificates
       - ../mondrianConfig/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian
