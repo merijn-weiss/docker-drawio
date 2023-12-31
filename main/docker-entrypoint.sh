@@ -197,6 +197,7 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
         echo "SSL_HOST: ${SSL_HOST}"
         xmlstarlet ed \
             -P -S -L \
+            -s "/Server/Service/Connector" -t 'elem' -n "SSLHostConfig${SSL_HOST}" \
             -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'attr' -n 'hostName' -v "${SSL_HOST}" \
             -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
             -s "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'elem' -n 'Certificate' \
