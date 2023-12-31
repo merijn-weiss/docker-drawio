@@ -191,7 +191,7 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
         -i "/Server/Service/${UUID}" -t 'attr' -n 'secure' -v 'true' \
         -i "/Server/Service/${UUID}" -t 'attr' -n 'clientAuth' -v 'false' \
 #        -i "/Server/Service/${UUID}" -t 'attr' -n 'sslProtocol' -v 'TLS' \
-#        -i "/Server/Service/${UUID}" -t 'attr' -n 'defaultSSLHostConfigName' -v "${PUBLIC_DNS:-'draw.example.com'}" \
+        -i "/Server/Service/${UUID}" -t 'attr' -n 'defaultSSLHostConfigName' -v "${PUBLIC_DNS:-'draw.example.com'}" \
         -r "/Server/Service/${UUID}" -v 'Connector' \
     conf/server.xml
 fi
