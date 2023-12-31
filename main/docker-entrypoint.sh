@@ -191,15 +191,15 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
         -i "/Server/Service/${UUID}" -t 'attr' -n 'secure' -v 'true' \
         -i "/Server/Service/${UUID}" -t 'attr' -n 'clientAuth' -v 'false' \
         -i "/Server/Service/${UUID}" -t 'attr' -n 'sslProtocol' -v 'TLS' \
-        -i "/Server/Service/${UUID}" -t 'attr' -n 'KeystoreFile' -v "$CATALINA_HOME/.keystore" \
-        -i "/Server/Service/${UUID}" -t 'attr' -n 'KeystorePass' -v "${KEY_PASS}" \
+        #-i "/Server/Service/${UUID}" -t 'attr' -n 'KeystoreFile' -v "$CATALINA_HOME/.keystore" \
+        #-i "/Server/Service/${UUID}" -t 'attr' -n 'KeystorePass' -v "${KEY_PASS}" \
         -i "/Server/Service/${UUID}" -t 'attr' -n 'defaultSSLHostConfigName' -v "${PUBLIC_DNS:-'draw.example.com'}" \
-        -s "/Server/Service/${UUID}" -t 'elem' -n 'SSLHostConfig' \
-        -i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'hostName' -v "${PUBLIC_DNS:-'draw.example.com'}" \
-        -i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
-        -s "/Server/Service/${UUID}/SSLHostConfig" -t 'elem' -n 'Certificate' \
-        -i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystoreFile' -v "$CATALINA_HOME/.keystore" \
-        -i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystorePassword' -v "${KEY_PASS}" \
+        #-s "/Server/Service/${UUID}" -t 'elem' -n 'SSLHostConfig' \
+        #-i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'hostName' -v "${PUBLIC_DNS:-'draw.example.com'}" \
+        #-i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
+        #-s "/Server/Service/${UUID}/SSLHostConfig" -t 'elem' -n 'Certificate' \
+        #-i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystoreFile' -v "$CATALINA_HOME/.keystore" \
+        #-i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystorePassword' -v "${KEY_PASS}" \
         -r "/Server/Service/${UUID}" -v 'Connector' \
     conf/server.xml
 fi
