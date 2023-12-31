@@ -191,17 +191,18 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
     echo "Append additional SSLHostConfig to server.xml"
     echo "SSL_HOSTS: ${SSL_HOSTS}"
     IFS=',' read -r -a SSL_HOSTS <<< "$SSL_HOSTS"
-
+    echo "SSL_HOSTS (array): ${SSL_HOSTS}"
     for SSL_HOST in "${SSL_HOSTS[@]}"
     do
+        echo "SSL_HOST: ${SSL_HOST}"
         xmlstarlet ed \
             -P -S -L \
-            -i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'hostName' -v "${SSL_HOST}" \
-            -i "/Server/Service/${UUID}/SSLHostConfig" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
-            -s "/Server/Service/${UUID}/SSLHostConfig" -t 'elem' -n 'Certificate' \
-            -i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystoreFile' -v "$CATALINA_HOME/.keystore" \
-            -i "/Server/Service/${UUID}/SSLHostConfig/Certificate" -t 'attr' -n 'certificateKeystorePassword' -v "${KEY_PASS}" \
-            -r "/Server/Service/${UUID}" -v 'Connector' \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'attr' -n 'hostName' -v "${SSL_HOST}" \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
+            -s "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'elem' -n 'Certificate' \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateKeystoreFile' -v "$CATALINA_HOME/.keystore" \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateKeystorePassword' -v "${KEY_PASS}" \
+            -r "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -v 'SSLHostConfig' \
         conf/server.xml
     done
 fi
