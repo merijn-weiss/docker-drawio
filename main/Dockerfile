@@ -19,10 +19,10 @@ RUN \
     ls -latr
 
 RUN \
-    if [ ${APP_BUILD} = "yes" ] then \
-        echo "yes" \
+    if [ ${APP_BUILD} = "yes" ]; then \
+        echo "yes"; \
     else \
-        echo "no" \
+        echo "no"; \
     fi
 
 RUN \
