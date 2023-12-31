@@ -47,9 +47,9 @@ else
     echo "	        let hashPosition = locationHREF.indexOf('#');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "	        if (hashPosition > 0)" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "	            locationHREF = locationHREF.slice(0, hashPosition);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-    echo "	        let stack = locationHREF.split("/");" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	        let stack = locationHREF.split('/');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "	        stack.pop();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-    echo "	        return stack.join("/");" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	        return stack.join('/');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "	    }" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "window.DRAWIO_BASE_URL = window.DRAWIO_SERVER_URL.slice(0, -1);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 fi
