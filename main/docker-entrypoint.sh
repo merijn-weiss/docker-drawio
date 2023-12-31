@@ -12,6 +12,7 @@ KEYSTORE_PASS=${KEYSTORE_PASS:-'V3ry1nS3cur3P4ssw0rd'}
 KEY_PASS=${KEY_PASS:-$KEYSTORE_PASS}
 
 echo "Init PreConfig.js"
+
 #Add CSP to prevent calls to draw.io
 echo "(function() {" > $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "  try {" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
@@ -22,6 +23,7 @@ echo " 	    var t = document.getElementsByTagName('meta')[0];" >> $CATALINA_HOME
 echo "      t.parentNode.insertBefore(s, t);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "  } catch (e) {} // ignore" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "})();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+
 #Overrides of global vars need to be pre-loaded
 if [[ "${DRAWIO_SELF_CONTAINED}" ]]; then
     echo "window.EXPORT_URL = '/service/0'; //This points to ExportProxyServlet which uses the local export server at port 8000. This proxy configuration allows https requests to the export server via Tomcat." >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
@@ -29,19 +31,33 @@ if [[ "${DRAWIO_SELF_CONTAINED}" ]]; then
 elif [[ "${EXPORT_URL}" ]]; then
     echo "window.EXPORT_URL = '/service/0';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 fi
+
 #DRAWIO_SERVER_URL is the new URL of the deployment, e.g. https://www.example.com/drawio/
 #DRAWIO_BASE_URL is still used by viewer, lightbox and embed. For backwards compatibility, DRAWIO_SERVER_URL is set to DRAWIO_BASE_URL if not specified.
 if [[ "${DRAWIO_SERVER_URL}" ]]; then
     echo "window.DRAWIO_SERVER_URL = '${DRAWIO_SERVER_URL}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "window.DRAWIO_BASE_URL = '${DRAWIO_BASE_URL:-${DRAWIO_SERVER_URL:0:$((${#DRAWIO_SERVER_URL}-1))}}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 else
-    echo "window.DRAWIO_BASE_URL = '${DRAWIO_BASE_URL:-http://localhost:8080}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-    echo "window.DRAWIO_SERVER_URL = window.DRAWIO_BASE_URL + '/';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "window.DRAWIO_BASE_URL = window.location.protocol + '//' + window.location.host + window.location.pathname;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "window.DRAWIO_SERVER_URL = window.location.protocol + '//' + window.location.host + '/'" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+
+    echo "window.DRAWIO_SERVER_URL = this.getBaseURL(window.location.href) + '/';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	    function getBaseURL(locationHREF)" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	    {" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	        let hashPosition = locationHREF.indexOf('#');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	        if (hashPosition > 0)" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	            locationHREF = locationHREF.slice(0, hashPosition);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	        let stack = locationHREF.split("/");" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	        stack.pop();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	        return stack.join("/");" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "	    }" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "window.DRAWIO_BASE_URL = window.DRAWIO_SERVER_URL.slice(0, -1);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 fi
+
 #DRAWIO_VIEWER_URL is path to the viewer js, e.g. https://www.example.com/js/viewer.min.js
-echo "window.DRAWIO_VIEWER_URL = '${DRAWIO_VIEWER_URL}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "window.DRAWIO_VIEWER_URL = window.DRAWIO_SERVER_URL + 'js/viewer.min.js';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 #DRAWIO_LIGHTBOX_URL Replace with your lightbox URL, eg. https://www.example.com
-echo "window.DRAWIO_LIGHTBOX_URL = '${DRAWIO_LIGHTBOX_URL}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "window.DRAWIO_LIGHTBOX_URL = window.DRAWIO_SERVER_URL;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "window.DRAW_MATH_URL = 'math/es5';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 #Custom draw.io configurations. For more details, https://www.drawio.com/doc/faq/configure-diagram-editor
 ## Mondrian: echo "window.DRAWIO_CONFIG = ${DRAWIO_CONFIG:-null};" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
