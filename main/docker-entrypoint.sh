@@ -184,12 +184,8 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
         -P -S -L \
         -s '/Server/Service' -t 'elem' -n "${UUID}" \
         -i "/Server/Service/${UUID}" -t 'attr' -n 'port' -v '8443' \
-        -i "/Server/Service/${UUID}" -t 'attr' -n 'protocol' -v 'org.apache.coyote.http11.Http11NioProtocol' \
+        -i "/Server/Service/${UUID}" -t 'attr' -n 'protocol' -v 'org.apache.coyote.http11.Http11AprProtocol' \
         -i "/Server/Service/${UUID}" -t 'attr' -n 'SSLEnabled' -v 'true' \
-        -i "/Server/Service/${UUID}" -t 'attr' -n 'maxThreads' -v '150' \
-        -i "/Server/Service/${UUID}" -t 'attr' -n 'scheme' -v 'https' \
-        -i "/Server/Service/${UUID}" -t 'attr' -n 'secure' -v 'true' \
-        -i "/Server/Service/${UUID}" -t 'attr' -n 'clientAuth' -v 'false' \
         -i "/Server/Service/${UUID}" -t 'attr' -n 'defaultSSLHostConfigName' -v "${PUBLIC_DNS:-'draw.example.com'}" \
         -r "/Server/Service/${UUID}" -v 'Connector' \
     conf/server.xml
