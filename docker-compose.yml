@@ -2,12 +2,12 @@
 version: '3.5'
 services:
   drawio:
-    image: mondrian/diagrams:22.1.15_mondrian_2.5.1
+    image: mondrian/diagrams:22.1.15_mondrian_2.5.2
     build: 
       context: ./main
       args:
         APP_BUILD: none
-        APP_VERSION: v22.1.15+mondrian_2.5.1
+        APP_VERSION: v22.1.15+mondrian_2.5.2
     container_name: mondrian-diagrams
     restart: unless-stopped
     ports:
