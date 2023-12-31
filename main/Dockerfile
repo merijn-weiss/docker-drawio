@@ -13,11 +13,13 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
-    ls -latr && \
     pwd && \
+    ls -latr && \
     mkdir -p /tmp/drawio/build && \
     cd /tmp/drawio/build/ && \
-    ls -latr && \
+    ls -latr
+
+RUN \
     if [ ${APP_BUILD} = "yes" ] ; then \
         cd /tmp && \
         git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
@@ -31,10 +33,6 @@ RUN \
         ls -latr && \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi ;
-
-RUN \
-    pwd && \
-    ls -latr
 
 FROM tomcat:9-jre11
 
