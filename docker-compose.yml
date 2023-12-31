@@ -15,6 +15,7 @@ services:
       - 443:8443
     environment:
       PUBLIC_DNS: dev.mondrian-it.io
+      SSL_HOSTS: [dev2.mondrian-it.io, dev3.mondrian-it.io]
       DRAWIO_SERVER_URL: https://dev.mondrian-it.io/
       DRAWIO_VIEWER_URL: https://dev.mondrian-it.io/js/viewer.min.js
       DRAWIO_LIGHTBOX_URL: https://dev.mondrian-it.io/
