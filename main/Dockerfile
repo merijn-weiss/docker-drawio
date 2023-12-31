@@ -30,6 +30,10 @@ RUN \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi ;
 
+RUN  --from=build \
+    pwd && \
+    ls -latr
+
 FROM tomcat:9-jre11
 
 LABEL maintainer="JGraph Ltd" \
