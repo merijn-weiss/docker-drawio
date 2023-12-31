@@ -6,7 +6,7 @@ services:
     build: 
       context: ./main
       args:
-        APP_BUILD: no
+        APP_BUILD: none
         APP_VERSION: v22.1.15+mondrian_2.5.0
     container_name: mondrian-diagrams
     restart: unless-stopped
