@@ -203,7 +203,7 @@ if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
             -s "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'elem' -n 'Certificate' \
             -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateFile' -v "$CATALINA_HOME/certificates/${SSL_HOST}/cert.pem" \
             -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateKeyFile' -v "$CATALINA_HOME/certificates/${SSL_HOST}/privkey.pem" \
-            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateChainFile' -v "$CATALINA_HOME/certificateChainFile/${SSL_HOST}/chain.pem" \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateChainFile' -v "$CATALINA_HOME/certificates/${SSL_HOST}/chain.pem" \
             -r "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -v 'SSLHostConfig' \
         conf/server.xml
     done
