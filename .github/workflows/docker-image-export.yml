@@ -1,9 +1,10 @@
 name: Docker image-export CI
 
 on:
-  push:
-  schedule:
-    - cron: "05 04 * * 1"
+  #push:
+  #chedule:
+  #  - cron: "05 04 * * 1"
+  workflow_dispatch:
 
 jobs:
   build:

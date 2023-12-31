@@ -13,6 +13,7 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
+    pwd && \
     mkdir -p /tmp/drawio/build && \
     cd /tmp/drawio/build/ && \
     ls -latr && \
