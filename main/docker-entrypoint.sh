@@ -189,6 +189,8 @@ fi
 
 if [ -f $CATALINA_HOME/.keystore ] && [ -z $VAR ]; then
     echo "Append additional SSLHostConfig to server.xml"
+    echo "SSL_HOSTS: ${SSL_HOSTS}"
+    IFS=',' read -r -a SSL_HOSTS <<< "$SSL_HOSTS"
 
     for SSL_HOST in "${SSL_HOSTS[@]}"
     do
