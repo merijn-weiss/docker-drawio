@@ -13,11 +13,9 @@ ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
-    pwd && \
-    ls -latr && \
     mkdir -p /tmp/drawio/build && \
     cd /tmp/drawio/build/ && \
-    pwd && \
+    wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war && \
     ls -latr
 
 RUN \
