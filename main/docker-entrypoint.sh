@@ -28,9 +28,6 @@ if [[ "${DRAWIO_SERVER_URL}" ]]; then
     echo "window.DRAWIO_SERVER_URL = '${DRAWIO_SERVER_URL}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "window.DRAWIO_BASE_URL = '${DRAWIO_BASE_URL:-${DRAWIO_SERVER_URL:0:$((${#DRAWIO_SERVER_URL}-1))}}';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 else
-    echo "window.DRAWIO_BASE_URL = window.location.protocol + '//' + window.location.host + window.location.pathname;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-    echo "window.DRAWIO_SERVER_URL = window.location.protocol + '//' + window.location.host + '/'" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-
     echo "window.DRAWIO_SERVER_URL = this.getBaseURL(window.location.href) + '/';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "	    function getBaseURL(locationHREF)" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "	    {" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
@@ -44,11 +41,10 @@ else
     echo "window.DRAWIO_BASE_URL = window.DRAWIO_SERVER_URL.slice(0, -1);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 fi
 
-#DRAWIO_VIEWER_URL is path to the viewer js, e.g. https://www.example.com/js/viewer.min.js
-echo "window.DRAWIO_VIEWER_URL = window.DRAWIO_SERVER_URL + 'js/viewer.min.js';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-#DRAWIO_LIGHTBOX_URL Replace with your lightbox URL, eg. https://www.example.com
-echo "window.DRAWIO_LIGHTBOX_URL = window.DRAWIO_SERVER_URL;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "window.DRAWIO_VIEWER_URL = window.DRAWIO_BASE_URL + '/js/viewer.min.js';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "window.DRAWIO_LIGHTBOX_URL = window.DRAWIO_BASE_URL;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "window.DRAW_MATH_URL = 'math/es5';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+
 #Custom draw.io configurations. For more details, https://www.drawio.com/doc/faq/configure-diagram-editor
 ## Mondrian: echo "window.DRAWIO_CONFIG = ${DRAWIO_CONFIG:-null};" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 if [[ "${MONDRIAN_ROOT}" ]]; then
@@ -62,15 +58,14 @@ fi
 
 #Real-time configuration
 echo "urlParams['sync'] = 'manual'; //Disable Real-Time" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "urlParams['extAuth'] = '1'; //Disable notifications" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
 #Disable unsupported services
 echo "urlParams['db'] = '0'; //dropbox" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "urlParams['gh'] = '0'; //github" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "urlParams['tr'] = '0'; //trello" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
 #Enable supported services
 echo "urlParams['browser'] = '1'; //browser" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "urlParams['gh'] = '1'; //github" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
 #Google Drive 
 if [[ -z "${DRAWIO_GOOGLE_CLIENT_ID}" ]]; then
