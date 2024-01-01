@@ -11,8 +11,8 @@ services:
     container_name: mondrian-diagrams
     restart: unless-stopped
     ports:
-      - 80:8080
-      - 443:8443
+      - 8080:8080
+      - 8443:8443
     environment:
       SSL_HOST_DEFAULT: dev.mondrian-it.io
       SSL_HOSTS: "dev.mondrian-it.io,diagrams-dev.mondrian-it.io"
@@ -23,12 +23,6 @@ services:
       - github.env
     extra_hosts:
       github.com: "140.82.121.4"
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://domain:8080 || exit 1"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
     volumes:
       - ../mondrianCertificates:/usr/local/tomcat/certificates
       - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
