@@ -116,7 +116,8 @@ fi
 if [[ -z "${DRAWIO_GITHUB_ID}" ]]; then
     echo "urlParams['gh'] = '0'; //GitHub"  >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 else
-    #Github url and id for the editor
+    echo "urlParams['gh'] = '1'; //GitHub"  >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+
     echo "window.DRAWIO_GITHUB_APP_MONDRIAN = '${DRAWIO_GITHUB_APP_MONDRIAN}'; " >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "window.DRAWIO_GITHUB_ID = '${DRAWIO_GITHUB_ID}'; " >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
