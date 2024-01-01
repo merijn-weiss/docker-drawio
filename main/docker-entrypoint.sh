@@ -65,7 +65,6 @@ echo "urlParams['tr'] = '0'; //trello" >> $CATALINA_HOME/webapps/draw/js/PreConf
 
 #Enable supported services
 echo "urlParams['browser'] = '1'; //browser" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "urlParams['gh'] = '1'; //github" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
 #Google Drive 
 if [[ -z "${DRAWIO_GOOGLE_CLIENT_ID}" ]]; then
@@ -111,6 +110,18 @@ else
     echo -n "${DRAWIO_GITLAB_URL}/oauth/token" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_auth_url
     echo -n "${DRAWIO_GITLAB_ID}" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_client_id
     echo -n "${DRAWIO_GITLAB_SECRET}" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_client_secret
+fi
+
+#Gitlab
+if [[ -z "${DRAWIO_GITHUB_ID}" ]]; then
+    echo "urlParams['gh'] = '0'; //GitHub"  >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+else
+    #Github url and id for the editor
+    echo "window.DRAWIO_GITHUB_APP_MONDRIAN = '${DRAWIO_GITHUB_APP_MONDRIAN}'; " >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "window.DRAWIO_GITHUB_ID = '${DRAWIO_GITHUB_ID}'; " >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+
+    echo -n "${DRAWIO_GITHUB_ID}" > $CATALINA_HOME/webapps/draw/WEB-INF/github_client_id
+    echo -n "${DRAWIO_GITHUB_SECRET}" > $CATALINA_HOME/webapps/draw/WEB-INF/github_client_secret
 fi
 
 cat $CATALINA_HOME/webapps/draw/js/PreConfig.js
