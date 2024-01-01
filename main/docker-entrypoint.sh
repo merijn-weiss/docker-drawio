@@ -41,8 +41,8 @@ else
     echo "window.DRAWIO_BASE_URL = window.DRAWIO_SERVER_URL.slice(0, -1);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 fi
 
-echo "window.DRAWIO_VIEWER_URL = window.DRAWIO_BASE_URL + '/js/viewer.min.js';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "window.DRAWIO_LIGHTBOX_URL = window.DRAWIO_BASE_URL;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "window.DRAWIO_VIEWER_URL = window.DRAWIO_SERVER_URL + 'js/viewer.min.js';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "window.DRAWIO_LIGHTBOX_URL = window.DRAWIO_SERVER_URL;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "window.DRAW_MATH_URL = 'math/es5';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 
 #Custom draw.io configurations. For more details, https://www.drawio.com/doc/faq/configure-diagram-editor
