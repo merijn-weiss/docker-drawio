@@ -12,9 +12,9 @@ services:
     networks:
       - private_network    
     restart: unless-stopped
-    ports:
-      - 8080:8080
-      - 8443:8443
+    #ports:
+    #  - 8080:8080
+    #  - 8443:8443
     environment:
       SSL_HOST_DEFAULT: dev.mondrian-it.io
       SSL_HOSTS: "dev.mondrian-it.io,diagrams-dev.mondrian-it.io"
