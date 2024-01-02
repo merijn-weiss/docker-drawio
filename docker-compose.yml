@@ -27,12 +27,12 @@ services:
       - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
 
   mondrian-diagrams-dev:
-    image: mondrian/diagrams:22.1.15_mondrian_2.5.8
+    image: mondrian/diagrams:22.1.15_mondrian_2.5.9
     build: 
       context: ./main
       args:
         APP_BUILD: none
-        APP_VERSION: v22.1.15+mondrian_2.5.8
+        APP_VERSION: v22.1.15+mondrian_2.5.9
     container_name: mondrian-diagrams-dev
     networks:
       - mondrian-network
