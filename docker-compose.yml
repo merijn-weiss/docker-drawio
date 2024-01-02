@@ -13,8 +13,33 @@ services:
       - mondrian-network
     restart: unless-stopped
     environment:
+      SSL_HOST_DEFAULT: diagrams-dev.mondrian-it.io
+      SSL_HOSTS: "diagrams-dev.mondrian-it.io"
+      MONDRIAN_ROOT: mondrian/
+      MONDRIAN_CONFIGURATION_PATH: diagrams_config/
+      MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
+    env_file:
+      - github.env
+    extra_hosts:
+      github.com: "140.82.121.4"
+    volumes:
+      - ../mondrianCertificates:/usr/local/tomcat/certificates
+      - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
+
+  mondrian-diagrams-dev:
+    image: mondrian/diagrams:22.1.15_mondrian_2.5.8
+    build: 
+      context: ./main
+      args:
+        APP_BUILD: none
+        APP_VERSION: v22.1.15+mondrian_2.5.8
+    container_name: mondrian-diagrams-dev
+    networks:
+      - mondrian-network
+    restart: unless-stopped
+    environment:
       SSL_HOST_DEFAULT: dev.mondrian-it.io
-      SSL_HOSTS: "dev.mondrian-it.io,diagrams-dev.mondrian-it.io"
+      SSL_HOSTS: "dev.mondrian-it.io"
       MONDRIAN_ROOT: mondrian/
       MONDRIAN_CONFIGURATION_PATH: diagrams_config/
       MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
