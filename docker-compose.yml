@@ -10,7 +10,7 @@ services:
         APP_VERSION: v22.1.15+mondrian_2.5.8
     container_name: mondrian-diagrams
     networks:
-      - mondrian-internal-network    
+      - mondrian-network
     restart: unless-stopped
     #ports:
     #  - 8080:8080
@@ -30,5 +30,6 @@ services:
       - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
 
 networks:
-    mondrian-internal-network:
-        driver: bridge
+  mondrian-network:
+    name: mondrian-internal-network
+    external: true
