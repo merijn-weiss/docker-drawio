@@ -13,8 +13,8 @@ services:
       - mondrian-network
     restart: unless-stopped
     ports:
-      - 127.0.0.1:8080:8080
-      - 127.0.0.1:8443:8443
+      - 127.0.0.1:18080:8080
+      - 127.0.0.1:18443:8443
     environment:
       SSL_HOST_DEFAULT: dev.mondrian-it.io
       SSL_HOSTS: "dev.mondrian-it.io,diagrams-dev.mondrian-it.io"
