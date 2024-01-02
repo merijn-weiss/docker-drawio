@@ -9,6 +9,8 @@ services:
         APP_BUILD: none
         APP_VERSION: v22.1.15+mondrian_2.5.8
     container_name: mondrian-diagrams
+    networks:
+      - public_network    
     restart: unless-stopped
     ports:
       - 8080:8080
@@ -26,3 +28,7 @@ services:
     volumes:
       - ../mondrianCertificates:/usr/local/tomcat/certificates
       - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
+
+networks:
+    private_network:
+        driver: bridge
