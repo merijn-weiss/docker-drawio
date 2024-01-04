@@ -48,7 +48,7 @@ services:
     extra_hosts:
       github.com: "140.82.121.4"
     volumes:
-      - ../mondrianCertificates:/usr/local/tomcat/certificates
+      - /etc/letsencrypt:/usr/local/tomcat/certificates
       - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
 
 networks:
