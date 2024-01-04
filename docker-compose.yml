@@ -79,7 +79,15 @@ services:
             memory: 256M
           reservations:
             memory: 128M
-
+      labels:
+        - "traefik.enable=true"
+  # ROUTERS
+        - "traefik.http.routers.mondrian-athena-diagrams.rule=Host(`athena-diagrams.mondrian-it.io`)"
+        - "traefik.http.routers.mondrian-athena-diagrams.tls=true"
+        - "traefik.http.routers.mondrian-athena-diagrams.entrypoints=web-secure"
+        - "traefik.http.routers.mondrian-athena-diagrams.middlewares=mondrian-athena-diagrams-myauth"
+  #MIDDLEWARE
+        - "traefik.http.middlewares.mondrian-athena-diagrams-myauth.basicauth.usersfile=/etc/traefik/.htpasswd"
       networks:
         - mondrian-network
       restart: unless-stopped
