@@ -178,9 +178,9 @@ UUID="$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 1 | head -n 1)$(cat /dev/ur
             -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'attr' -n 'hostName' -v "${SSL_HOST}" \
             -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'attr' -n 'protocols' -v 'TLSv1.2' \
             -s "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -t 'elem' -n 'Certificate' \
-            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateFile' -v "$CATALINA_HOME/certificates/${SSL_HOST}/live/cert.pem" \
-            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateKeyFile' -v "$CATALINA_HOME/certificates/${SSL_HOST}/live/privkey.pem" \
-            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateChainFile' -v "$CATALINA_HOME/certificates/${SSL_HOST}/live/chain.pem" \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateFile' -v "$CATALINA_HOME/certificates/live/${SSL_HOST}/cert.pem" \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateKeyFile' -v "$CATALINA_HOME/certificates/live/${SSL_HOST}/privkey.pem" \
+            -i "/Server/Service/Connector/SSLHostConfig${SSL_HOST}/Certificate" -t 'attr' -n 'certificateChainFile' -v "$CATALINA_HOME/certificates/live/${SSL_HOST}/chain.pem" \
             -r "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -v 'SSLHostConfig' \
         conf/server.xml
     done
