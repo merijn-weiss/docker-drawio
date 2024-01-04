@@ -73,12 +73,12 @@ services:
           APP_BUILD: none
           APP_VERSION: v22.1.16+mondrian_2.5.9
       container_name: mondrian-athena-diagrams
-    deploy:
-      resources:
-        limits:
-          memory: 256M
-        reservations:
-          memory: 128M
+      deploy:
+        resources:
+          limits:
+            memory: 256M
+          reservations:
+            memory: 128M
 
       networks:
         - mondrian-network
