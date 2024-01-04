@@ -9,8 +9,12 @@ services:
         APP_BUILD: none
         APP_VERSION: v22.1.16+mondrian_2.5.9
     container_name: mondrian-diagrams
-    mem_limit: 512m
-    mem_reservation: 128M
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
 
     networks:
       - mondrian-network
@@ -37,8 +41,12 @@ services:
         APP_BUILD: none
         APP_VERSION: v22.1.16+mondrian_2.5.9
     container_name: mondrian-diagrams-dev
-    mem_limit: 512m
-    mem_reservation: 128M
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
 
     networks:
       - mondrian-network
@@ -65,8 +73,12 @@ services:
           APP_BUILD: none
           APP_VERSION: v22.1.16+mondrian_2.5.9
       container_name: mondrian-athena-diagrams
-      mem_limit: 512m
-      mem_reservation: 128M
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
 
       networks:
         - mondrian-network
