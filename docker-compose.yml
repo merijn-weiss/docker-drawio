@@ -1,4 +1,4 @@
-#This compose file adds draw.io to your stack
+#This compose file adds Mondrian Diagrams to your stack
 version: '3.5'
 services:
   mondrian-diagrams:
@@ -9,6 +9,9 @@ services:
         APP_BUILD: none
         APP_VERSION: v22.1.16+mondrian_2.5.9
     container_name: mondrian-diagrams
+    mem_limit: 512m
+    mem_reservation: 128M
+
     networks:
       - mondrian-network
     restart: unless-stopped
@@ -34,6 +37,9 @@ services:
         APP_BUILD: none
         APP_VERSION: v22.1.16+mondrian_2.5.9
     container_name: mondrian-diagrams-dev
+    mem_limit: 512m
+    mem_reservation: 128M
+
     networks:
       - mondrian-network
     restart: unless-stopped
@@ -50,6 +56,34 @@ services:
     volumes:
       - /etc/letsencrypt:/usr/local/tomcat/certificates
       - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
+
+  mondrian-athena-diagrams:
+      image: mondrian/diagrams:22.1.16_mondrian_2.5.9
+      build: 
+        context: ./main
+        args:
+          APP_BUILD: none
+          APP_VERSION: v22.1.16+mondrian_2.5.9
+      container_name: mondrian-athena-diagrams
+      mem_limit: 512m
+      mem_reservation: 128M
+
+      networks:
+        - mondrian-network
+      restart: unless-stopped
+      environment:
+        SSL_HOST_DEFAULT: athena-diagrams.mondrian-it.io
+        SSL_HOSTS: "athena-diagrams.mondrian-it.io"
+        MONDRIAN_ROOT: mondrian/
+        MONDRIAN_CONFIGURATION_PATH: diagrams_config/
+        MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
+      env_file:
+        - github.env
+      extra_hosts:
+        github.com: "140.82.121.4"
+      volumes:
+        - /etc/letsencrypt:/usr/local/tomcat/certificates
+        - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
 
 networks:
   mondrian-network:
