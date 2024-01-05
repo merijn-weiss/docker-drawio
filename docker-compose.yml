@@ -23,7 +23,7 @@ services:
       - "traefik.http.routers.mondrian-diagrams.entrypoints=web-secure"
 
     networks:
-      - mondrian-network
+      - proxy_network
     restart: unless-stopped
     environment:
       SSL_HOST_DEFAULT: diagrams.mondrian-it.io
@@ -61,7 +61,7 @@ services:
       - "traefik.http.routers.mondrian-diagrams-dev.entrypoints=web-secure"
       
     networks:
-      - mondrian-network
+      - proxy_network
     restart: unless-stopped
     environment:
       SSL_HOST_DEFAULT: diagrams-dev.mondrian-it.io
@@ -100,7 +100,7 @@ services:
         - "traefik.http.routers.mondrian-athena-diagrams.middlewares=mondrian-basic-auth@file"
 
       networks:
-        - mondrian-network
+        - proxy_network
       restart: unless-stopped
       environment:
         SSL_HOST_DEFAULT: athena-diagrams.mondrian-it.io
@@ -117,6 +117,6 @@ services:
         - ../mondrianConfig:/usr/local/tomcat/webapps/draw/mondrian
 
 networks:
-  mondrian-network:
-    name: mondrian-internal-network
+  proxy_network:
+    name: proxy_network
     external: true
