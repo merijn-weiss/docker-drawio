@@ -53,7 +53,7 @@ services:
       - "traefik.http.routers.mondrian-diagrams-dev.rule=Host(`diagrams-dev.mondrian-it.io`)"
       - "traefik.http.routers.mondrian-diagrams-dev.tls=true"
       - "traefik.http.routers.mondrian-diagrams-dev.entrypoints=web-secure"
-      - "traefik.http.routers.mondrian-diagrams-dev.middlewares=mondrian-test-auth"
+      - "traefik.http.routers.mondrian-diagrams-dev.middlewares=mondrian-test-auth@file"
       
     networks:
       - mondrian-network
