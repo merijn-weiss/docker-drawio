@@ -97,8 +97,8 @@ services:
         - "traefik.http.routers.mondrian-athena-diagrams.rule=Host(`athena-diagrams.mondrian-it.io`)"
         - "traefik.http.routers.mondrian-athena-diagrams.tls=true"
         - "traefik.http.routers.mondrian-athena-diagrams.entrypoints=web-secure"
-        - "traefik.http.routers.mondrian-athena-diagrams.middlewares==mondrian-basic-auth@file"
-        
+        - "traefik.http.routers.mondrian-athena-diagrams.middlewares=mondrian-basic-auth@file"
+
       networks:
         - mondrian-network
       restart: unless-stopped
