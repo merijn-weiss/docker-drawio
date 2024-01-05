@@ -15,6 +15,12 @@ services:
           memory: 256M
         reservations:
           memory: 128M
+    labels:
+      - "traefik.enable=true"
+    # ROUTERS
+      - "traefik.http.routers.mondrian-diagrams.rule=Host(`diagrams.mondrian-it.io`)"
+      - "traefik.http.routers.mondrian-diagrams.tls=true"
+      - "traefik.http.routers.mondrian-diagrams.entrypoints=web-secure"
 
     networks:
       - mondrian-network
@@ -53,7 +59,6 @@ services:
       - "traefik.http.routers.mondrian-diagrams-dev.rule=Host(`diagrams-dev.mondrian-it.io`)"
       - "traefik.http.routers.mondrian-diagrams-dev.tls=true"
       - "traefik.http.routers.mondrian-diagrams-dev.entrypoints=web-secure"
-      - "traefik.http.routers.mondrian-diagrams-dev.middlewares=mondrian-test-auth@file"
       
     networks:
       - mondrian-network
@@ -92,9 +97,8 @@ services:
         - "traefik.http.routers.mondrian-athena-diagrams.rule=Host(`athena-diagrams.mondrian-it.io`)"
         - "traefik.http.routers.mondrian-athena-diagrams.tls=true"
         - "traefik.http.routers.mondrian-athena-diagrams.entrypoints=web-secure"
-        - "traefik.http.routers.mondrian-athena-diagrams.middlewares=mondrian-athena-diagrams-myauth"
-      # MIDDLEWARE
-        - "traefik.http.middlewares.mondrian-athena-diagrams-myauth.basicauth.usersfile=/etc/traefik/.htpasswd"
+        - "traefik.http.routers.mondrian-athena-diagrams.middlewares==mondrian-basic-auth@file"
+        
       networks:
         - mondrian-network
       restart: unless-stopped
