@@ -59,7 +59,7 @@ services:
       - "traefik.http.routers.mondrian-diagrams-dev.rule=Host(`diagrams-dev.mondrian-it.io`)"
       - "traefik.http.routers.mondrian-diagrams-dev.tls=true"
       - "traefik.http.routers.mondrian-diagrams-dev.entrypoints=web-secure"
-      - "traefik.http.routers.mondrian-diagrams-dev.middlewares=secures@file"
+      - "traefik.http.routers.mondrian-diagrams-dev.middlewares=secured@file"
       
     networks:
       - proxy_network
