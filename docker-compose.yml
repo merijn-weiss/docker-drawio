@@ -21,6 +21,7 @@ services:
       - "traefik.http.routers.mondrian-diagrams.rule=Host(`diagrams.mondrian-it.io`)"
       - "traefik.http.routers.mondrian-diagrams.tls=true"
       - "traefik.http.routers.mondrian-diagrams.entrypoints=web-secure"
+      - "traefik.http.routers.mondrian-diagrams.middlewares=default@file"
 
     networks:
       - proxy_network
