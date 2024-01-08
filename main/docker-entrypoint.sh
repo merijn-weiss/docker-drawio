@@ -48,7 +48,7 @@ echo "window.DRAW_MATH_URL = 'math/es5';" >> $CATALINA_HOME/webapps/draw/js/PreC
 #Custom draw.io configurations. For more details, https://www.drawio.com/doc/faq/configure-diagram-editor
 ## Mondrian: echo "window.DRAWIO_CONFIG = ${DRAWIO_CONFIG:-null};" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 if [[ "${MONDRIAN_ROOT}" ]]; then
-    echo "window.MONDRIAN_CONFIG_PATH = '${MONDRIAN_ROOT}' + window.location.host + '/' + '${MONDRIAN_CONFIGURATION_PATH}' ;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+    echo "window.MONDRIAN_CONFIG_PATH = '${MONDRIAN_ROOT}' + '${MONDRIAN_CONFIGURATION_PATH}' ;" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "let xhr = new XMLHttpRequest();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "xhr.open('GET', window.DRAWIO_SERVER_URL + window.MONDRIAN_CONFIG_PATH + '${MONDRIAN_CONFIGURATION_FILE}', false);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "xhr.send();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
@@ -150,8 +150,8 @@ fi
 echo "App.prototype.isDriveDomain = function() { return true; }" >> $CATALINA_HOME/webapps/draw/js/PostConfig.js
 
 # Update SSL port configuration if it does'nt exists
-#
-UUID="$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 1 | head -n 1)$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1)"
+if [[ "${SSL_HOST_DEFAULT}" ]]; then
+    UUID="$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 1 | head -n 1)$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1)"
 
     echo "Append https connector to server.xml"
 
@@ -184,6 +184,7 @@ UUID="$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 1 | head -n 1)$(cat /dev/ur
             -r "/Server/Service/Connector/SSLHostConfig${SSL_HOST}" -v 'SSLHostConfig' \
         conf/server.xml
     done
+fi
 
 xmlstarlet ed conf/server.xml
 
