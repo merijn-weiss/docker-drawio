@@ -38,7 +38,7 @@ services:
       github.com: "140.82.121.4"
     volumes:
       - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
-      - ../mondrianConfigmondrianConfig/diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
+      - ../mondrianConfig/diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
   mondrian-diagrams-dev:
     image: mondrian/diagrams:22.1.16_mondrian_2.5.9
@@ -77,7 +77,7 @@ services:
       github.com: "140.82.121.4"
     volumes:
       - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
-      - ../mondrianConfigmondrianConfig/diagrams-dev.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
+      - ../mondrianConfig/diagrams-dev.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
   mondrian-athena-diagrams:
       image: mondrian/diagrams:22.1.16_mondrian_2.5.9
@@ -116,7 +116,7 @@ services:
         github.com: "140.82.121.4"
       volumes:
         - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
-        - ../mondrianConfigmondrianConfig/athena-diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
+        - ../ondrianConfig/athena-diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
 networks:
   proxy_network:
