@@ -29,7 +29,7 @@ WORKDIR /opt/workdir/
 COPY $EXTRA_CACERT /opt/workdir/
 RUN \
     if [ ${EXTRA_CACERT} ] ; then \
-        run keytool -importcert -file ${EXTRA_CACERT} -alias ${EXTRA_CACERT} -cacerts -storepass changeit -noprompt ; \
+        keytool -importcert -file ${EXTRA_CACERT} -alias ${EXTRA_CACERT} -cacerts -storepass changeit -noprompt ; \
     fi
 
 FROM tomcat:9-jre11
