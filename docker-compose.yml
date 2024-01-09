@@ -73,7 +73,6 @@ services:
       MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
     env_file:
       - github.env
-      - gitlab.env
     extra_hosts:
       github.com: "140.82.121.4"
     volumes:
@@ -118,7 +117,7 @@ services:
         github.com: "140.82.121.4"
       volumes:
         - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
-        - ../ondrianConfig/athena-diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
+        - ../mondrianConfig/athena-diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
 networks:
   proxy_network:
