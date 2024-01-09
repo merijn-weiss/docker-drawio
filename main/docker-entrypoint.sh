@@ -113,7 +113,7 @@ else
 
     echo "DRAWIO_GITLAB_CERTIFICATE: ${DRAWIO_GITLAB_CERTIFICATE}"
     if [["${DRAWIO_GITLAB_CERTIFICATE}" ]]; then
-        keytool -import -alias gitlab -file "$CATALINA_HOME/extraFiles/${DRAWIO_GITHUB_CERTIFICATE}" -cacerts -storepass changeit
+        keytool -import -alias gitlab -file "$CATALINA_HOME/extraFiles/${DRAWIO_GITLAB_CERTIFICATE}" -cacerts -storepass changeit
     fi
 fi
 
