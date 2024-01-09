@@ -129,7 +129,7 @@ else
     echo -n "${DRAWIO_GITHUB_SECRET}" > $CATALINA_HOME/webapps/draw/WEB-INF/github_client_secret
 
     if [["${DRAWIO_GITHUB_CERTIFICATE}" ]]; then
-        keytool -import -alias gitlab -file "$CATALINA_HOME/certificates/${DRAWIO_GITHUB_CERTIFICATE}" -cacerts -storepass changeit
+        keytool -import -alias gitlab -file "$CATALINA_HOME/extraFiles/${DRAWIO_GITHUB_CERTIFICATE}" -cacerts -storepass changeit
     fi
 fi
 
