@@ -110,6 +110,10 @@ else
     echo -n "${DRAWIO_GITLAB_URL}/oauth/token" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_auth_url
     echo -n "${DRAWIO_GITLAB_ID}" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_client_id
     echo -n "${DRAWIO_GITLAB_SECRET}" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_client_secret
+
+    if [[ "${DRAWIO_GITLAB_CERTIFICATE}" ]]; then
+
+    fi
 fi
 
 #Gitlab
@@ -123,6 +127,10 @@ else
 
     echo -n "${DRAWIO_GITHUB_ID}" > $CATALINA_HOME/webapps/draw/WEB-INF/github_client_id
     echo -n "${DRAWIO_GITHUB_SECRET}" > $CATALINA_HOME/webapps/draw/WEB-INF/github_client_secret
+
+    if [["${DRAWIO_GITHUB_CERTIFICATE}" ]]; then
+        keytool -import -alias gitlab -file "$CATALINA_HOME/certificates/${DRAWIO_GITHUB_CERTIFICATE}" -cacerts -storepass changeit
+    fi
 fi
 
 cat $CATALINA_HOME/webapps/draw/js/PreConfig.js
