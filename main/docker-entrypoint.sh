@@ -111,6 +111,7 @@ else
     echo -n "${DRAWIO_GITLAB_ID}" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_client_id
     echo -n "${DRAWIO_GITLAB_SECRET}" > $CATALINA_HOME/webapps/draw/WEB-INF/gitlab_client_secret
 
+    echo "DRAWIO_GITLAB_CERTIFICATE: ${DRAWIO_GITLAB_CERTIFICATE}"
     if [["${DRAWIO_GITLAB_CERTIFICATE}" ]]; then
         keytool -import -alias gitlab -file "$CATALINA_HOME/extraFiles/${DRAWIO_GITHUB_CERTIFICATE}" -cacerts -storepass changeit
     fi
