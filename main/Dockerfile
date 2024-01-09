@@ -24,14 +24,6 @@ RUN \
         wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
     fi
 
-ARG EXTRA_CACERT
-WORKDIR /opt/workdir/
-COPY $EXTRA_CACERT /opt/workdir/
-RUN \
-    if [ ${EXTRA_CACERT} ] ; then \
-        keytool -importcert -file ${EXTRA_CACERT} -alias ${EXTRA_CACERT} -cacerts -storepass changeit -noprompt ; \
-    fi
-
 FROM tomcat:9-jre11
 
 LABEL maintainer="JGraph Ltd" \
