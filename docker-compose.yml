@@ -79,6 +79,7 @@ services:
     volumes:
       - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
       - ../mondrianConfig/diagrams-dev.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
+      - ../mondrianConfig/extraFiles:/usr/local/tomcat/extraFiles:ro
 
   mondrian-athena-diagrams:
       image: mondrian/diagrams:22.1.16_mondrian_2.5.9
