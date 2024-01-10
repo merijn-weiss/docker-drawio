@@ -9,20 +9,12 @@ RUN apt-get update -y && \
         git \
         wget
 
-ARG APP_BUILD=yes
 ARG APP_VERSION
 
 RUN \
-    if [ ${APP_BUILD} = "yes" ] ; then \
-        cd /tmp && \
-        git clone --depth 1 --branch dev_mondrian --single-branch https://github.com/merijn-weiss/drawio.git && \
-        cd /tmp/drawio/etc/build/ && \
-        ant war ; \
-    else \
-        mkdir -p /tmp/drawio/build && \
-        cd /tmp/drawio/build/ && \
-        wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ; \
-    fi
+    mkdir -p /tmp/drawio/build && \
+    cd /tmp/drawio/build/ && \
+    wget https://github.com/merijn-weiss/drawio/releases/download/${APP_VERSION}/draw.war ;
 
 FROM tomcat:9-jre11
 

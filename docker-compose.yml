@@ -45,7 +45,6 @@ services:
     build: 
       context: ./main
       args:
-        APP_BUILD: none
         APP_VERSION: v22.1.18+mondrian_2.5.9
     container_name: mondrian-diagrams-dev
     deploy:
