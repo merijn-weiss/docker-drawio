@@ -41,12 +41,12 @@ services:
       - ../mondrianConfig/diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
   mondrian-diagrams-dev:
-    image: mondrian/diagrams:22.1.16_mondrian_2.5.9
+    image: mondrian/diagrams:22.1.18_mondrian_2.5.9
     build: 
       context: ./main
       args:
         APP_BUILD: none
-        APP_VERSION: v22.1.16+mondrian_2.5.9
+        APP_VERSION: v22.1.18+mondrian_2.5.9
     container_name: mondrian-diagrams-dev
     deploy:
       resources:
