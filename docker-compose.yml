@@ -65,7 +65,7 @@ services:
     restart: unless-stopped
     environment:
       SSL_HOST_DEFAULT: diagrams-dev.mondrian-it.io
-      SSL_HOSTS: "diagrams-dev.mondrian-it.io,dev.mondrian-it.io"
+      SSL_HOSTS: "diagrams-dev.mondrian-it.io"
       MONDRIAN_ROOT: mondrian
       MONDRIAN_CONFIGURATION_PATH: /
       MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
@@ -76,7 +76,6 @@ services:
     volumes:
       - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
       - ../mondrianConfig/diagrams-dev.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
-      - ../mondrianConfig/extraFiles/cacerts-modified:/opt/java/openjdk/lib/security/cacerts:ro
 
   mondrian-athena-diagrams:
       image: mondrian/diagrams:22.1.21_mondrian_2.5.12
