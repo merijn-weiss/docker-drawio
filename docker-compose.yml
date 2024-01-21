@@ -44,7 +44,7 @@ services:
     build: 
       context: ./main
       args:
-        APP_VERSION: v22.1.21_mondrian_2.5.11
+        APP_VERSION: v22.1.21+mondrian_2.5.11
     container_name: mondrian-diagrams-dev
     deploy:
       resources:
