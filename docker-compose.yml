@@ -2,11 +2,11 @@
 version: '3.5'
 services:
   mondrian-diagrams:
-    image: mondrian/diagrams:23.1.0_mondrian_2.5.14
+    image: mondrian/diagrams:23.1.2_mondrian_3.0.0
     build: 
       context: ./main
       args:
-        APP_VERSION: v23.1.0+mondrian_2.5.14
+        APP_VERSION: v23.1.2+mondrian_3.0.0
     container_name: mondrian-diagrams
     deploy:
       resources:
@@ -78,11 +78,11 @@ services:
       - ../mondrianConfig/diagrams-dev.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
   mondrian-athena-diagrams:
-      image: mondrian/diagrams:23.1.0_mondrian_2.5.14
+      image: mondrian/diagrams:23.1.2_mondrian_3.0.0
       build: 
         context: ./main
         args:
-          APP_VERSION: v23.1.0+mondrian_2.5.14
+          APP_VERSION: v23.1.2+mondrian_3.0.0
       container_name: mondrian-athena-diagrams
       deploy:
         resources:
