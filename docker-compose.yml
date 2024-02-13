@@ -26,6 +26,7 @@ services:
       - proxy_network
     restart: unless-stopped
     environment:
+      DRAWIO_SERVER_URL: https://diagrams.mondrian-it.io/
       SSL_HOST_DEFAULT: diagrams.mondrian-it.io
       SSL_HOSTS: "diagrams.mondrian-it.io"
       MONDRIAN_ROOT: mondrian
