@@ -119,11 +119,11 @@ services:
         - ../mondrianConfig/athena-diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
   mondrian-shuhari-diagrams:
-      image: mondrian/diagrams:24.0.4_mondrian_3.1.1
+      image: mondrian/diagrams:24.2.0_mondrian_3.1.1
       build: 
         context: ./main
         args:
-          APP_VERSION: v24.0.4+mondrian_3.1.1
+          APP_VERSION: v24.2.0+mondrian_3.1.1
       container_name: mondrian-shuhari-diagrams
       deploy:
         resources:
