@@ -137,6 +137,7 @@ services:
         - "traefik.http.routers.mondrian-shuhari-diagrams.rule=Host(`shuhari-diagrams.mondrian-it.io`)"
         - "traefik.http.routers.mondrian-shuhari-diagrams.tls=true"
         - "traefik.http.routers.mondrian-shuhari-diagrams.entrypoints=web-secure"
+        - "traefik.http.routers.mondrian-shuhari-diagrams.entrypoints=web"
         - "traefik.http.routers.mondrian-shuhari-diagrams.middlewares=secured@file"
 
       networks:
