@@ -150,8 +150,8 @@ services:
         MONDRIAN_ROOT: mondrian
         MONDRIAN_CONFIGURATION_PATH: /
         MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
-      #env_file:
-      #  - github.env
+      env_file:
+        - no-github.env
       extra_hosts:
         github.com: "140.82.121.4"
       volumes:
