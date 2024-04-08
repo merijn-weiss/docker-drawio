@@ -2,11 +2,11 @@
 version: '3.5'
 services:
   mondrian-diagrams:
-    image: mondrian/diagrams:24.2.0_mondrian_3.1.1
+    image: mondrian/diagrams:24.2.2_mondrian_3.2.0
     build: 
       context: ./main
       args:
-        APP_VERSION: v24.2.0+mondrian_3.1.1
+        APP_VERSION: v24.2.2+mondrian_3.2.0
     container_name: mondrian-diagrams
     deploy:
       resources:
