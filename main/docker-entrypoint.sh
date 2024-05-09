@@ -149,7 +149,17 @@ fi
 #Treat this domain as a draw.io domain
 echo "App.prototype.isDriveDomain = function() { return true; }" >> $CATALINA_HOME/webapps/draw/js/PostConfig.js
 
-# Update SSL port configuration if it does'nt exists
+# Update SSL port configuration if it doesn't exists
+
+## START Dirty workaround to fix issue that restarting the container forces double entries in server.xml
+if ! [ -f conf/server.xml.init ]; then
+  echo "File conf/server.xml.init does not exist."
+  cp conf/server.xml conf/server.xml.init
+fi
+
+cp conf/server.xml.init conf/server.xml
+## END Dirty workaround
+
 if [[ "${SSL_HOST_DEFAULT}" ]]; then
     UUID="$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 1 | head -n 1)$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1)"
 
