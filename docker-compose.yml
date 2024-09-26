@@ -1,5 +1,4 @@
 #This compose file adds Mondrian Diagrams to your stack
-version: '3.5'
 services:
   mondrian-diagrams:
     image: mondrian/diagrams:24.7.8_mondrian_3.2.1
