@@ -172,10 +172,10 @@ services:
       labels:
         - "traefik.enable=true"
       # ROUTERS
-        - "traefik.http.routers.mondrian-shuhari-diagrams.rule=Host(`daedalus-diagrams.mondrian-it.io`)"
-        - "traefik.http.routers.mondrian-shuhari-diagrams.tls=true"
-        - "traefik.http.routers.mondrian-shuhari-diagrams.entrypoints=web-secure"
-        - "traefik.http.routers.mondrian-shuhari-diagrams.middlewares=secured@file"
+        - "traefik.http.routers.mondrian-daedalus-diagrams.rule=Host(`daedalus-diagrams.mondrian-it.io`)"
+        - "traefik.http.routers.mondrian-daedalus-diagrams.tls=true"
+        - "traefik.http.routers.mondrian-daedalus-diagrams.entrypoints=web-secure"
+        - "traefik.http.routers.mondrian-daedalus-diagrams.middlewares=secured@file"
 
       networks:
         - proxy_network
