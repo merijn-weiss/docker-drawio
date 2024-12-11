@@ -156,6 +156,45 @@ services:
         - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
         - ../mondrianConfig/shuhari-diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
 
+  mondrian-daedalus-diagrams:
+      image: mondrian/diagrams:24.7.17_mondrian_3.2.1
+      build: 
+        context: ./main
+        args:
+          APP_VERSION: v24.7.17+mondrian_3.2.1
+      container_name: mondrian-daedalus-diagrams
+      deploy:
+        resources:
+          limits:
+            memory: 256M
+          reservations:
+            memory: 128M
+      labels:
+        - "traefik.enable=true"
+      # ROUTERS
+        - "traefik.http.routers.mondrian-shuhari-diagrams.rule=Host(`daedalus-diagrams.mondrian-it.io`)"
+        - "traefik.http.routers.mondrian-shuhari-diagrams.tls=true"
+        - "traefik.http.routers.mondrian-shuhari-diagrams.entrypoints=web-secure"
+        - "traefik.http.routers.mondrian-shuhari-diagrams.middlewares=secured@file"
+
+      networks:
+        - proxy_network
+      restart: unless-stopped
+      environment:
+        DRAWIO_SERVER_URL: https://daedalus-diagrams.mondrian-it.io/
+        SSL_HOST_DEFAULT: daedalus-diagrams.mondrian-it.io
+        SSL_HOSTS: "daedalus-diagrams.mondrian-it.io"
+        MONDRIAN_ROOT: mondrian
+        MONDRIAN_CONFIGURATION_PATH: /
+        MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
+      #env_file:
+      #  - github.env
+      extra_hosts:
+        gitlab.com: "2606:4700:90:0:f22e:fbec:5bed:a9b9"
+      volumes:
+        - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
+        - ../mondrianConfig/daedalus-diagrams.mondrian-it.io/diagrams_config:/usr/local/tomcat/webapps/draw/mondrian:ro
+
 networks:
   proxy_network:
     name: proxy_network
