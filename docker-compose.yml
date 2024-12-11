@@ -32,10 +32,10 @@ services:
       MONDRIAN_CONFIGURATION_PATH: /
       MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
     env_file:
-      #- github.env
+      - github.env
       - gitlab.env
     extra_hosts:
-      #github.com: "140.82.121.4"
+      github.com: "140.82.121.4"
       gitlab.com: "172.65.251.78"
     volumes:
       - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
