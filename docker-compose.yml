@@ -33,7 +33,7 @@ services:
       MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
     env_file:
       - github.env
-      - gitlab.env
+      - gitlab-diagrams.env
     extra_hosts:
       github.com: "140.82.121.4"
       gitlab.com: "172.65.251.78"
@@ -191,7 +191,7 @@ services:
         MONDRIAN_CONFIGURATION_PATH: /
         MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
       env_file:
-        - gitlab.env
+        - gitlab-daedalus.env
       extra_hosts:
         gitlab.com: "172.65.251.78"
       volumes:
