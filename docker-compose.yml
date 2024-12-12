@@ -177,7 +177,6 @@ services:
         - "traefik.http.routers.mondrian-daedalus-diagrams.rule=Host(`daedalus-diagrams.mondrian-it.io`)"
         - "traefik.http.routers.mondrian-daedalus-diagrams.tls=true"
         - "traefik.http.routers.mondrian-daedalus-diagrams.entrypoints=web-secure"
-        #- "traefik.http.routers.mondrian-daedalus-diagrams.middlewares=secured@file"
         - "traefik.http.routers.mondrian-daedalus-diagrams.middlewares=default@file"
 
       networks:
@@ -191,8 +190,10 @@ services:
         MONDRIAN_CONFIGURATION_PATH: /
         MONDRIAN_CONFIGURATION_FILE: mondrianDiagrams.configuration
       env_file:
+        - github.env
         - gitlab-daedalus.env
       extra_hosts:
+        github.com: "140.82.121.4"
         gitlab.com: "172.65.251.78"
       volumes:
         - /etc/letsencrypt:/usr/local/tomcat/certificates:ro
